@@ -1,0 +1,37 @@
+volumes:
+  postgres: null
+services:
+  publify:
+    build: .
+    environment:
+      DATABASE_URL: postgres://publify:publify@postgres/publify
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      RAILS_SERVE_STATIC_FILES: true
+      RAILS_LOG_TO_STDOUT: true
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 -S --spider 127.0.0.1:3000 || exit 1" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_interval: 5s
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: publify
+      POSTGRES_USER: publify
+      POSTGRES_DB: publify
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U publify -d publify" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_interval: 5s

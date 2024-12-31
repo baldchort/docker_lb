@@ -51,12 +51,13 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and
   # use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = false
+  config.assume_ssl = false
 
   # Include generic and useful information about system operation, but avoid
   # logging too much information to avoid inadvertent exposure of personally
   # identifiable information (PII).
-  config.log_level = :info
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
@@ -73,7 +74,8 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to
   # raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :test
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -126,4 +128,5 @@ Rails.application.configure do
   #   ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context =
   #   ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  config.action_controller.allow_forgery_protection = false
 end

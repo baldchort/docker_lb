@@ -1,0 +1,14 @@
+.github
+.idea
+.gitignore
+doc
+spec
+CHANGELOG.md
+CONTRIBUTING.md
+MIT-LICENSE
+README.md
+TODO.txt
+Dockerfile
+.dockerignore
+compose/docker-compose.yml
+.env

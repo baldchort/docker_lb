@@ -1,13 +1,15 @@
 # frozen_string_literal: true
+ruby "3.0.5"
 
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem "rails", ["~> 6.1.6", ">= 6.1.6.1"]
+gem "rails", "6.1.7.0"
 
-gem "mysql2"
+# gem "mysql2"
 gem "pg"
-gem "sqlite3", "~> 1.7.0"
+gem "tzinfo-data"
+# gem "sqlite3", "~> 1.7.0"
 
 # Store sessions in the database
 gem "activerecord-session_store", "~> 2.1.0"
@@ -71,7 +73,7 @@ group :development do
   gem "spring-commands-cucumber", "~> 1.0"
   gem "spring-commands-rspec", "~> 1.0"
 
-  gem "fast_stack"
+  # gem "fast_stack"
   gem "flamegraph"
   gem "memory_profiler"
   gem "stackprof"
